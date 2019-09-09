@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div id="page" class="container">
+    <div id="content">
+      <div class="title"><h2>Sentence Input</h2></div>
+      <form action="" method="POST" novalidate>
+          {{ form.hidden_tag() }}
+          <p>
+              {{ form.sentence.label }}<br>
+              {{ form.sentence(size=32) }}
+              {% for error in form.sentence.errors %}
+              <span style='color: red;'>[{{ error }}]</span>
+              {% endfor %}
+          </p>
+          <p>{{ form.submit_para() }}</p>
+      </form>
+      <p>
+      <form action="" method="POST" name="paraphrase_list">
+        <table style="width:100%">
+          <tr>
+            <th>ID</th>
+            <th>Paraphrase</th>
+            <th>Score</th>
+          </tr>
+          {% for (i, sent) in lines %}
+          <tr>
+            <td>
+              <input type="checkbox" id="{{ i }}" name="paraphrases" value="{{ sent[2] }}">
+              <label for="{{ i }}">{{ i }}</label>
+            </td>
+            <td>{{ sent[2] }}</td>
+            <td>{{ '%.2f'%sent[0] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <input type=submit value='Add Paraphrases to Train'>
+      </form>
+      </p>
+    </div>
+    <div class="title"><h2>Model Upload</h2></div>
+    <form method="post" enctype=multipart/form-data>
+        <input type=file name=model>
+        <input type=submit value=Bootstrap>
+    </form>
+  </div>
+{% endblock %}

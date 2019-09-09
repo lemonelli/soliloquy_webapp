@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Language Model Bootstrapper</title>
+      {% else %}
+      <title>Language Model Bootstrapper</title>
+      {% endif %}
+      <meta charset='UTF=8'/>
+      <link href="http://fonts.googleapis.com/css?family=Raleway:400,200,500,600,700,800,300" rel="stylesheet" />
+      <link href="{{ url_for('static',filename='assets/default.css') }}" rel="stylesheet" type="text/css" media="all" />
+      <link href="{{ url_for('static',filename='assets/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+    </head>
+    <body>
+        <div id="wrapper">
+          <div id="menu-wrapper">
+            <div id="header-wrapper">
+              <div id="header" class="container">
+                <div id="logo">
+                  <h1><a href="{{ url_for('index') }}">Paraphrase  Improvement</a></h1>
+                </div>
+              </div>
+            </div>
+            <div id="menu" class="container">
+              <ul>
+                <li><a href="{{ url_for('index') }}" class="button square back">Home</a></li>
+                <li><a href="{{ url_for('model_eval') }}" class="button square back">Model Creation & Evaluation</a></li>
+                <li><a href="{{ url_for('paraphrase') }}" class="button square back">Paraphrase Bootstrapping</a></li>
+              </ul>
+            </div>
+          </div>
+        {% block content %}{% endblock %}
+      </div>
+      <div id="copyright" class="container">
+      	<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
+      </div>
+    </body>
+</html>

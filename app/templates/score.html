@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div id="page" class="container">
+    <div id="content">
+      <div class="title"><h2>Perplexity Score</h2></div>
+      <h3>{{ '%.4f'%plxy }}</h3>
+    </div>
+    <a href="{{ url_for('model_eval') }}" class="button square back">Evaluate Different Model</a>
+    {% if type == "model" %}
+    <a href="{{ url_for('paraphrase') }}" class="button square back">Bootstrap with Paraphrases</a>
+    {% endif %}
+    {% if type == "train" %}
+      <a href="{{ url_for('download_model')}}" class="button square back">Download Model</a>
+    {% endif %}
+  </div>
+{% endblock %}
