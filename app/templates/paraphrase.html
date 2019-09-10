@@ -3,17 +3,10 @@
 {% block content %}
   <div id="page" class="container">
     <div id="content">
-      <div class="title"><h2>Sentence Input</h2></div>
-      <form action="" method="POST" novalidate>
-          {{ form.hidden_tag() }}
-          <p>
-              {{ form.sentence.label }}<br>
-              {{ form.sentence(size=32) }}
-              {% for error in form.sentence.errors %}
-              <span style='color: red;'>[{{ error }}]</span>
-              {% endfor %}
-          </p>
-          <p>{{ form.submit_para() }}</p>
+      <div class="title"><h2>Train File Upload</h2></div>
+      <form method="POST" enctype=multipart/form-data>
+          <input type=file name=train>
+          <input type=submit name="get para" value="Get Paraphrases">
       </form>
       <p>
       <form action="" method="POST" name="paraphrase_list">
@@ -27,21 +20,16 @@
           <tr>
             <td>
               <input type="checkbox" id="{{ i }}" name="paraphrases" value="{{ sent[2] }}">
-              <label for="{{ i }}">{{ i }}</label>
+              <label for="{{ i }}">{{ i + 1 }}</label>
             </td>
             <td>{{ sent[2] }}</td>
             <td>{{ '%.2f'%sent[0] }}</td>
           </tr>
           {% endfor %}
         </table>
-        <input type=submit value='Add Paraphrases to Train'>
-      </form>
-      </p>
-    </div>
-    <div class="title"><h2>Model Upload</h2></div>
-    <form method="post" enctype=multipart/form-data>
-        <input type=file name=model>
-        <input type=submit value=Bootstrap>
-    </form>
+        {% if endfile == False %}
+        <input type=submit name="next 100" value="Next 100 Paraphrases">
+        {% endif %}
+        <input type=submit name="train new" value="Train New Model">
   </div>
 {% endblock %}
