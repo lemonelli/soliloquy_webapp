@@ -24,22 +24,22 @@ This webapp is deployed using a docker container built from an image file.  The 
 
 In order to create your own docker image, follow the steps below.
 
-1. Build image from cleaned_webapp folder 
+1. Build image from cleaned_webapp folder - 
 'docker build cleaned_webapp/ --tag=webapp_ubuntu' 
 
-2. Run container from image 
+2. Run container from image - 
 'docker run -dit -p 5000:5000 webapp_ubuntu' 
 
-3. Find docker container name 
+3. Find docker container name - 
 'docker ps' 
 
-4. Bash into container 
+4. Bash into container - 
 'docker exec -it container_name /bin/bash' 
 
 5. Follow instructions from "container_prep.txt"
 
-6. Save container as image 
+6. Save container as image - 
 'docker commit container_name webapp_ubuntu_completed'
 
-7. Build image from deployed_webapp folder 
+7. Build image from deployed_webapp folder - 
 'docker build deployed_webapp/ --tag=webapp_ubuntu_deployable'
