@@ -36,10 +36,10 @@ In order to create your own docker image, follow the steps below.
 4. Bash into container 
 'docker exec -it container_name /bin/bash' 
 
-5. Follow instructions from 'container_prep.txt'
+5. Follow instructions from "container_prep.txt"
 
-6. Save container as image
+6. Save container as image 
 'docker commit container_name webapp_ubuntu_completed'
 
-7. Build image from deployed_webapp folder
+7. Build image from deployed_webapp folder 
 'docker build deployed_webapp/ --tag=webapp_ubuntu_deployable'
