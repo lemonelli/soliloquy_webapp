@@ -1,0 +1,49 @@
+root@5cdd9d0b653d:/usr/src/webapp# history
+    #install updates, python and pip
+    1  apt-get update
+    2  apt-get install python3
+    3  apt-get install python3-pip
+    #install python packages
+    4  pip3 install -r requirements.txt
+    #modify c compilers to run wit old openfst
+    5  apt-get install g++-5
+    6  cd ../../bin/
+    7  rm g++
+    8  ln -s g++-5 g++
+    9  rm x86_64-linux-gnu-gcc
+   10  ln -s gcc-5 x86_64-linux-gnu-gcc
+   11  cd ../src/webapp/
+   #install old openfst (1.3.4)
+   12  tar xzvf openfst-1.3.4.tar.gz
+   13  cd openfst-1.3.4
+   14  ./configure
+   15  make
+   16  make install
+   17  cd ../
+   #install pyfst
+   18  pip3 install pyfst
+   #install new openfst (1.6.8)
+   19  tar xzvf openfst-1.6.8.tar.gz
+   20  cd openfst-1.6.8
+   21  ./configure
+   22  make
+   23  make install
+   24  cd ../
+   #install python kenlm
+   25  pip3 install kenlm.tar.gz
+   #install kenlm dependencies
+   26  apt-get install build-essential libboost-all-dev cmake zlib1g-dev libbz2-dev liblzma-dev
+   #install kenlm
+   29  tar xzvf kenlm.tar.gz
+   30  mkdir kenlm/build
+   31  cd kenlm/build
+   32  cmake ..
+   33  make -j2
+   34  cd ../../
+   #set environment variables
+   35  export FLASK_APP=run.py
+   36  export FLASK_ENV=development
+   37  export LC_ALL=C.UTF-8
+   38  export LANG=C.UTF-8
+   #check to make sure it runs
+   39  flask run --host=0.0.0.0
